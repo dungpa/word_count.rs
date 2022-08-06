@@ -4,7 +4,7 @@ use regex::Regex;
 use itertools::Itertools;
 
 pub fn split_into_words(lines: io::Lines<io::BufReader<File>>) -> Vec<String> {
-    let word_separator = Regex::new(r"([ ,.]+)").expect("Invalid regex");
+    let word_separator = Regex::new(r"([ ,;.]+)").expect("Invalid regex");
 
     let mut words: Vec<String> = vec![];
     // Consumes the iterator, returns an (Optional) String
