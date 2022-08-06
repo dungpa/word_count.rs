@@ -15,12 +15,14 @@ fn main() {
             }
         }
 
-        // It is inefficient to clone the strings, we live with it for now.
-        let hash_map = words.into_iter().map(|s| (s.clone(), s.clone())).into_group_map();
+        // TODO: Remove unnecessary clones.
+        let hash_map = 
+            words.into_iter()
+                  .filter_map(|s| { if s.trim().is_empty() { None } else { Some((s.clone(), s.clone())) } })
+                  .into_group_map();
 
         for (key, value) in hash_map.into_iter() {
             println!("{}: {}", key, value.len());
         }
     }
-    println!("Done");
 }
