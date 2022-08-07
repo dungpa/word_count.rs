@@ -10,9 +10,8 @@ fn main() {
     }
     else {
         let start = Instant::now();
-        let input_file_name = &args[1];
-        if let Ok(lines) = file_reader::read_lines(input_file_name) {
-            let words = word_counter::split_into_words(lines);
+        let filename = &args[1];
+        if let Ok(words) = file_reader::read_words(filename) {
             let word_counts = word_counter::count_words(words);
 
             let duration = start.elapsed();
