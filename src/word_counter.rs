@@ -29,4 +29,12 @@ mod tests {
         let actual = crate::word_counter::count_words(input);
         itertools::assert_equal(actual, expected);
     }
+
+    #[test]
+    fn count_words_works_on_words_with_multiple_occurences() {
+        let input = vec!["Hello".into(), "world".into(), "world".into()];
+        let expected = vec![(1, "hello".into()), (2, "world".into())];
+        let actual = crate::word_counter::count_words(input);
+        itertools::assert_equal(actual, expected);
+    }
 }
