@@ -19,7 +19,7 @@ fn split_into_words(lines: io::Lines<io::BufReader<File>>) -> Vec<String> {
     // Consumes the iterator, returns an (Optional) String
     for line in lines {
         if let Ok(ip) = line {
-            let new_words: Vec<String> = word_separator.split(&ip).map(str::to_lowercase).collect();
+            let new_words: Vec<String> = word_separator.split(&ip).map(str::to_string).collect();
             words.extend(new_words);
         }
     }
