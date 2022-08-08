@@ -32,3 +32,22 @@ pub fn read_words<P>(filename: P) -> Result<Vec<String>, String> where P: AsRef<
     }
     return Err("Unable to read file".to_string());
 }
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn read_words_works_on_non_existent_files() {
+        let input = "non_existent.txt";
+        let expected: Result<Vec<String>, _> = Err("Unable to read file".to_string());
+        let actual = crate::file_reader::read_words(input);
+        assert_eq!(actual, expected);
+    }
+
+    #[test]
+    fn read_words_works_on_existent_files() {
+        let input = "sample_50_words.txt";
+        let actual = crate::file_reader::read_words(input).map(|vec| {vec.len()});
+        assert!(actual.is_ok());
+        assert_eq!(actual, Ok(50))
+    }
+}
