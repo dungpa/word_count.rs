@@ -30,7 +30,7 @@ pub fn read_words<P>(filename: P) -> Result<Vec<String>, String> where P: AsRef<
     if let Ok(lines) = read_lines(filename) {
         return Ok(split_into_words(lines));
     }
-    return Err("Unable to read file".to_string());
+    return Err("Unable to read file".into());
 }
 
 #[cfg(test)]
@@ -38,7 +38,7 @@ mod tests {
     #[test]
     fn read_words_works_on_non_existent_files() {
         let input = "non_existent.txt";
-        let expected: Result<Vec<String>, _> = Err("Unable to read file".to_string());
+        let expected: Result<Vec<String>, _> = Err("Unable to read file".into());
         let actual = crate::file_reader::read_words(input);
         assert_eq!(actual, expected);
     }
