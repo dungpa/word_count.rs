@@ -27,7 +27,7 @@ pub fn read_words<P>(filename: P) -> Result<Vec<String>, String> where P: AsRef<
     if let Ok(lines) = read_lines(filename) {
         return Ok(split_into_words(lines));
     }
-    return Err("Unable to read file".into());
+    Err("Unable to read file".into())
 }
 
 #[cfg(test)]
